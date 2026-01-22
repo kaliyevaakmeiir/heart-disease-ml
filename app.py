@@ -17,7 +17,9 @@ chol = st.number_input("Cholesterol", 100, 400, 200)
 fbs = st.selectbox("Fasting blood sugar > 120 mg/dl", [0, 1])
 
 if st.button("🔍 Predict risk"):
-    features = np.array([[age, sex, cp, trestbps, chol, fbs]])
+   features = np.array([[age, sex, cp, trestbps, chol, fbs,
+                      restecg, thalach, exang, oldpeak,
+                      slope, ca, thal]])
     prediction = model.predict(features)[0]
     probability = model.predict_proba(features)[0][1]
 
@@ -25,3 +27,4 @@ if st.button("🔍 Predict risk"):
         st.error(f"⚠️ High risk of heart disease (probability: {probability:.2f})")
     else:
         st.success(f"✅ Low risk of heart disease (probability: {probability:.2f})")
+
